@@ -11,7 +11,7 @@
 				<input type="text" title="City" placeholder="City" name="city" oninvalid="setCustomValidity('Enter Your City')" oninput="setCustomValidity('')" required/><br>
 				<input type="Password" title="Password" placeholder="Password" name="password" oninvalid="setCustomValidity('Enter Password')" oninput="setCustomValidity('')"required/><br>
 				<input type="Password" title="ConfrimPassword" placeholder="ConfrimPassword" name="password2" oninvalid="setCustomValidity('Verify Password')" oninput="setCustomValidity('')" required/><br> <br>
-				<input type="submit" value="Register" class="submitbutton"/><br><br>
+				
 			</form>
 			
 		</div>
