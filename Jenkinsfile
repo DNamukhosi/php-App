@@ -3,7 +3,8 @@ pipeline {
   environment {
     image_name = 'neke/dama'
     registry = "https://hub.docker.com/r/neke/dama"
-    registryCredential = 'Dockerhub'
+    registryCredential = '2wsxCDE#$RFV'
+    dockerImage = ''
   }
 
   agent any
@@ -13,6 +14,7 @@ pipeline {
       steps{
         script {
           docker.build image_name + ":$BUILD_NUMBER"
+          dockerImage = docker.build image_name + ":$BUILD_NUMBER"
         }
       }
     }
