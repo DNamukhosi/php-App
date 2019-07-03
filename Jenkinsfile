@@ -21,18 +21,17 @@ pipeline {
     stage('push image') {
         steps{
             script {
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push()
-                        }
-                    }
+                docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
                 }
             }
+        }
     }
-
     stage('Deploy'){
         steps {
             sh 'ssh ubuntu@34.220.138.220'
+            }
         }
-    }
 
+    }
 }  
