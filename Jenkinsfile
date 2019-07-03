@@ -13,20 +13,19 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          docker.build image_name + ":$BUILD_NUMBER"
           dockerImage = docker.build image_name + ":$BUILD_NUMBER"
         }
       }
     }
     
-    stage('Deploy') {
+    stage('push image') {
         steps{
             script {
-                    docker.withRegistry( '', registryCredential ) {
+                    docker.withRegistry( registry, registryCredential ) {
                         dockerImage.push()
                         }
                     }
                 }
             }
-  }
-}
+    }
+}  
