@@ -3,7 +3,7 @@ pipeline {
   environment {
     image_name = 'neke/dama'
     registry = "https://hub.docker.com"
-    registryCredential = 'dockerhub'
+    registryCredential = '2wsxCDE#$RFV'
     dockerImage = ''
   }
 
@@ -21,7 +21,7 @@ pipeline {
     stage('push image') {
         steps{
             script {
-                    docker.withRegistry( registry, registryCredential ) {
+                    docker.withRegistry( '', registryCredential ) {
                         dockerImage.push()
                         }
                     }
