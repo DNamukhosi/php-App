@@ -3,7 +3,7 @@ pipeline {
   environment {
     image_name = 'neke/dama'
     registry = "https://hub.docker.com"
-    registryCredential = '2wsxCDE#$RFV'
+    registryCredential = 'Dockerhub'
     dockerImage = ''
   }
 
@@ -28,4 +28,11 @@ pipeline {
                 }
             }
     }
-}    
+
+    stage('Deploy'){
+        steps {
+            sh 'ssh ubuntu@34.220.138.220'
+        }
+    }
+
+}  
