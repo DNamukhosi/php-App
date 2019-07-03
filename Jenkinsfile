@@ -2,7 +2,7 @@ pipeline {
 
   environment {
     image_name = 'neke/dama'
-    registry = "https://hub.docker.com/r/neke/dama"
+    registry = "https://hub.docker.com"
     registryCredential = 'Dockerhub'
     dockerImage = ''
   }
@@ -28,4 +28,4 @@ pipeline {
                 }
             }
     }
-}  
+}    
