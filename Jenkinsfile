@@ -1,4 +1,3 @@
-
 pipeline {
 
   environment {
@@ -17,14 +16,15 @@ pipeline {
         }
       }
     }
-
-stage ('pushing an image'){
-    steps{
-        script {
-            docker.push image_name 
-        }
-    }
-
-}
+    
+    stage('Deploy') {
+        steps{
+            script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                        }
+                    }
+                }
+            }
   }
 }
