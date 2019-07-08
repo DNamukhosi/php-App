@@ -33,15 +33,14 @@ pipeline {
     stage('Deploy'){
         steps {
           script {
-            remote = [:]
-            remote.name = ''
-            remote.host = '54.202.135.34'
+            def remote = [:]
+            remote.name = 'B'
+            remote.host = 'ec2-54-202-135-34.us-west-2.compute.amazonaws.com'
             remote.user = 'ubuntu'
-            remote.password = ''
             remote.allowAnyHosts = true
             
-            withCredentials([sshUserPrivateKey(credentialsId: 'slavenode', keyFileVariable: 'identity')]){
-              remote.user = ''
+            withCredentials([sshUserPrivateKey(credentialsId: 'sshkey', keyFileVariable: 'identity')]){
+              remote.user = 'ubuntu'
               remote.identityFile = identity
               sshCommand remote: remote, command: 'ls /home/ubuntu/dama'
 
@@ -50,4 +49,4 @@ pipeline {
         }
     }
   }
-} 
+}
