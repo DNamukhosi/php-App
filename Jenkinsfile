@@ -5,13 +5,7 @@ pipeline {
     registry = "https://hub.docker.com"
     registryCredential = 'Dockerhub'
     dockerImage = ''
-    remote = [:]
-    remote.name = ''
-    remote.host = '54.202.135.34'
-    remote.user = 'ubuntu'
-    remote.password = ''
-    remote.allowAnyHosts = true
-
+    
 
 
   }
@@ -39,7 +33,14 @@ pipeline {
     stage('Deploy'){
         steps {
           script {
-            withCredentials([sshUserPrivateKey(credentialsId: 'ubuntu', keyFileVariable: 'identity')]){
+            remote = [:]
+            remote.name = ''
+            remote.host = '54.202.135.34'
+            remote.user = 'ubuntu'
+            remote.password = ''
+            remote.allowAnyHosts = true
+            
+            withCredentials([sshUserPrivateKey(credentialsId: 'slavenode', keyFileVariable: 'identity')]){
               remote.user = ''
               remote.identityFile = identity
               sshCommand remote: remote, command: 'ls /home/ubuntu/dama'
@@ -49,4 +50,4 @@ pipeline {
         }
     }
   }
-}
+} 
