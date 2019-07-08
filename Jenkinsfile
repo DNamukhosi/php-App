@@ -5,8 +5,7 @@ pipeline {
     registry = "https://hub.docker.com"
     registryCredential = 'Dockerhub'
     dockerImage = ''
-    
-
+  
 
   }
 
