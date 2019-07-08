@@ -16,7 +16,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build image_name + ":$BUILD_NUMBER"
+          dockerImage = docker.build image_name
         }
       }
     }
@@ -42,11 +42,15 @@ pipeline {
             withCredentials([sshUserPrivateKey(credentialsId: 'sshkey', keyFileVariable: 'identity')]){
               remote.user = 'ubuntu'
               remote.identityFile = identity
-              sshCommand remote: remote, command: 'ls /home/ubuntu/dama'
-
+              sshCommand remote: remote, command: 'docker pull neke/dama', sudo: true
+              sshCommand remote: remote, command: 'docker stop damaris', sudo: true, failOnError: false
+              sshCommand remote: remote, command: 'docker rm damaris', sudo: true, failOnError: false
+              sshCommand remote: remote, command: 'docker run --name=damaris -d -p 8082:80 neke/dama', sudo: true
+              
             }
           }
         }
     }
   }
 }
+
