@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    image_name = 'neke/dama1'
+    image_name = 'neke/dama'
     registry = "https://hub.docker.com"
     registryCredential = 'Dockerhub'
     dockerImage = ''
