@@ -12,17 +12,29 @@ pipeline {
   agent any
 
   stages {
-    stage('Building image') {
+    stage('Building image develop') {
       when {
         branch 'develop'
       }
-      }
+      
       steps{
         script {
           dockerImage = docker.build image_name
         }
       }
     }
+    stage('Building image master') {
+      when {
+        branch 'master'
+      }
+      
+      steps{
+        script {
+          dockerImage = docker.build image_name
+        }
+      }
+    }
+
     
     stage('push image') {
       }
