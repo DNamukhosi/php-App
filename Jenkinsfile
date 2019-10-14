@@ -14,7 +14,9 @@ pipeline {
   stages {
     stage('Building image develop') {
       when {
-        branch 'develop'
+        expression {
+          return env.GIT_BRANCH == "origin/develop"
+}
       }
       
       steps{
@@ -25,7 +27,9 @@ pipeline {
     }
     stage('Building image master') {
       when {
-        branch 'master'
+        expression {
+          return env.GIT_BRANCH == "origin/master"
+}
       }
       
       steps{
