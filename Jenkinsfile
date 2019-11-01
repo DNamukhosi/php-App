@@ -1,9 +1,9 @@
 pipeline {
 
   environment {
-    image_name = 'neke/dama'
-    registry = "https://hub.docker.com"
-    registryCredential = 'Dockerhub'
+    imageName = 'neke/phpApp'
+    registryUrl = "https://hub.docker.com/"
+    registryCredential = 'neke'
     dockerImage = ''
   
 
@@ -12,35 +12,17 @@ pipeline {
   agent any
 
   stages {
-    stage('Building image develop') {
-      when {
-        expression {
-          return env.GIT_BRANCH == "origin/develop"
-}
-      }
-      
-      steps{
-        script {
-          dockerImage = docker.build image_name
-        }
-      }
-    }
-    stage('Building image master') {
-      when {
-        expression {
-          return env.GIT_BRANCH == "origin/master"
-}
-      }
-      
-      steps{
-        script {
-          dockerImage = docker.build image_name
-        }
-      }
-    }
-
     
-    stage('push image') {
+    stage ('Build Image - Stable') {
+      
+      steps {
+        script {
+          dockerImage = docker.build imageName + ":stable"
+        }
+      }
+    }
+     
+    stage('Push Image to Registry') {
       steps{
             script {
                 docker.withRegistry( '', registryCredential ) {
