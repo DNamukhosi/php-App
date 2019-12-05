@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    dockerImage
+    dockerImage = ''
     imageName = 'neke/phpApp-web'
     imageTag = 'latest'
   
