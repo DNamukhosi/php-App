@@ -1,10 +1,9 @@
 pipeline {
 
   environment {
+    dockerImage
     imageName = 'neke/phpApp'
-    registryUrl = "https://hub.docker.com/"
-    registryCredential = 'neke'
-    dockerImage = ''
+    imageTag = 'latest'
   
 
   }
@@ -17,16 +16,16 @@ pipeline {
       
       steps {
         script {
-          dockerImage = docker.build imageName + ":stable"
+          dockerImage = docker.build imageName + ":" + imageTag
         }
       }
     }
      
     stage('Push Image to Registry') {
-      steps{
-            script {
-                docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push()
+            steps {
+                script {
+                    docker.withRegistry('', 'docker-hub') {
+                        dockerImage.push()
                 }
             }
         }
