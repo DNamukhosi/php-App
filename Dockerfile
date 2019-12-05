@@ -18,6 +18,7 @@ RUN mkdir -p $APACHE_LOG_DIR
 
 COPY patient.php /var/www/html
 
-EXPOSE 80
+EXPOSE 8080
 
+CMD echo "ServerName localhost" >> /etc/apache2/apache2.conf
 CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
