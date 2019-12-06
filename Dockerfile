@@ -16,7 +16,7 @@ RUN mkdir -p $APACHE_RUN_DIR
 RUN mkdir -p $APACHE_LOCK_DIR
 RUN mkdir -p $APACHE_LOG_DIR
 
-COPY patient.php /var/www/html
+COPY patient.html /var/www/html
 
 EXPOSE 8080
 
